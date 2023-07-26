@@ -1,9 +1,20 @@
-# R MTGTOP8 Scraping function
-#
-#
-#
+#'MTGTOP8 R scarping functions
+#'
+#'@description 
+#'
+#'@import rvest
+#'
+#'@param db Un objet R contenant la sortie de la fonction de scraping. Si cet argument est pas NULL alors imin est pas pris en compte
+#'@param imax Valeur iterative maximal pour le parametre event de la requete URL de mtgtop8
+#'@param form Chaine de caractere qui va indiquer quelle format seras enregistrer lors du parsing du site mtgtop8 parmis 'Duel Commander','Modern','Pauper','Leagcy' ou  'Standard
+#'@param imin Un chiffre indiquand le numero de event maximum
+#'
+#'@examples
+#'
+#'@author Quentin Barbier
+#'
 
-mtgtop8.scraping <- function(db=NULL,imax=41200,form="Duel Commander",imin=NULL){
+mtgtop8_scraping <- function(db=NULL,imax=41200,form="Duel Commander",imin=NULL){
   if(!form%in%c("Duel Commander","Modern","Pauper","Legacy","Standard")){
     return("Error format please select in 'Duel Commander', 
            'Modern', 'Pauper', 'Legacy' or 'Standard'")
@@ -51,7 +62,3 @@ mtgtop8.scraping <- function(db=NULL,imax=41200,form="Duel Commander",imin=NULL)
   }
   return(db)
 }
-
-load("mtgtop8DC.Rdata")
-db <- mtgtop8.scraping(db=db,imax=45586,"Duel Commander",imin=NULL)
-save(db, file = "mtgtop8DC.Rdata")
