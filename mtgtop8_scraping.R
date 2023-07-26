@@ -1,3 +1,8 @@
+# R MTGTOP8 Scraping function
+#
+#
+#
+
 mtgtop8.scraping <- function(db=NULL,imax=41200,form="Duel Commander",imin=NULL){
   if(!form%in%c("Duel Commander","Modern","Pauper","Legacy","Standard")){
     return("Error format please select in 'Duel Commander', 
