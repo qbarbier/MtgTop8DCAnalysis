@@ -138,39 +138,82 @@ load("mtgtop8DC.Rdata")
 mat <- convert.mtgtop8.to.df(db)
 mat <- mtgtop8.estimate.winrate(mat)
 
-archetype  <- list(
+archetype.dc  <- list(
+  "Aminatou"="(.*(a|A)minatou.*|.*(R|r)eaminatou)",
+  "Aragorn Control"=".*Aragorn, King.*",
+  "Aragorn Aggro"=".*Aragorn (4c.*|, The Unit.*)",
+  "Atraxa"=".*Atraxa.*",
+  "Azusa"=".*Azusa.*",
+  
+  "Balmor"=".*Balmor.*",
+  "Bar a Ka"=".*Baral .*",
+  "Beamtown"="(.*Beamtown.*|.*Brute.*|.*Poutre.*)",
+  
+  "Dennick"=".*Dennick.*",
+  "Dihada"="(.*Dihada,.*|.*Dihada .*|Dihada)",
+  
+  "Ertai"=".*Ertai.*",
+  "Elminster"=".*Elminster.*",
+  
   "Grist"=".*Grist.*",
-  "Weenie White"="(.*Isamaru.*|.*Skrelv*.|.*Weenie.*)",
-  "Yoshimaru"=".*Yoshi.*",
-  "Red Deck Win"="(^Kari{1}.Zev.*)|(^Feldon.*)|(^Ragavan.*)",
-  "Raffine"=".*Raffine.*",
   "Ghyrson"=".*Ghyrson.*",
   "Gut"=".*Gut.*",
-  "Dennick"=".*Dennick.*",
+  "Golos"=".*Golos.*",
+  "Gitrog"=".*Gitrog.*",
+  "Grenzo"=".*Grenzo.*",
+  
   "Hogaak"="(.*Hogaak.*|.*Hoogak.*)",
-  "Leovold"=".*Leovold.*",
-  "Aminatou"=".*(a|A)minatou.*",
-  "Golos"="^Golow.*",
-  "Wilson"=".*Wilson.*",
-  "Saskia"=".*Saskia.*",
+  
+  "Juri"=".*Juri.*",
+  
+  "Kess"=".*Kess.*",
+  "Kroxa"=".*Kroxa.*",
   "Klothys"=".*Klothys.*",
   "Kinnan"=".*Kinnan.*",
-  "Niv-mizzet"="(.*Niv-mizzet.*|.*Niv.*)",
-  "Tevesh"=".*Tevesh.*",
-  "Juri"=".*Juri.*",
-  "Kroxa"=".*Kroxa.*",
-  "Sythis"=".*Sythis.*",
-  "Balmor"=".*Balmor.*",
-  "Dihada"="(.*Dihada,.*|.*Dihada .*)",
-  "Tivit"=".*Tivit.*",
+  
   "Light Paw"=".*Light-(p|P)aws.*",
+  "Ludevic"=".*Ludevic.*",
+  "Leovold"=".*Leovold.*",
+  "Livio"="Livio.*",
+  
+  "Magda"=".*Magda.*",
+  "Marchesa"=".*Marchesa.*",
+  "Marath"=".*Marath.*",
+  
+  "Niv-mizzet"="(.*Niv-mizzet.*|.*Niv.*)",
+  
+  "Octavia"=".*Octavia.*",
+  
   "Prossh"=".*Prossh.*",
-  "WILL"="(.*Will .*|.*Cecily.*)",
-  "Ertai"=".*Ertai.*",
-  "Atraxa"=".*Atraxa.*",
-  "Bar a Ka"=".*Baral .*",
-  "Elminster"=".*Elminster.*",
-  "Octavia"=".*Octavia.*"
+  
+  "Red Deck Win"="(^Kari{1}.Zev.*|^Feldon.*|*^Ragavan.*|Rdw)",
+  "Raffine"=".*Raffine.*",
+  "Rokiric"=".*Rokiric.*",
+  "Rustein"=".*Rutstein.*",
+  
+  "Saskia"=".*Saskia.*",
+  "Sythis"=".*Sythis.*",
+  "Sai"=".*Sai.*",
+  "Shorikai"=".*Shorikai.*",
+  "Stickfingers"="Stickfingers",
+  
+  "Tevesh"=".*Tevesh.*",
+  "Tivit"=".*Tivit.*",
+  "Titania"=".*Titania.*",
+  
+  "UR-Dragon"=".*U-dragon.*",
+  "Weenie White"="(.*Isamaru.*|.*Skrelv*.|.*Weenie.*|.*Thalia.*)",
+  "WILL"="(.*Will .*|.*Cecily.*|.*WLL.*|.*Wll.*)",
+  "Wilson"=".*Wilson.*",
+  "Yoshimaru"=".*Yoshi.*"
+)
+
+type.list = list(
+  "Combo"=c("Prossh","Sythis","Kinnan","WILL","Beamtown"),
+  "Control"=c("Octavia","Elminster","Atraxa","Ertai","Ludevic"),
+  "Aggro"=c("Weenie White","Red Deck Win","Yoshimaru","Sai","Balmor","Magda",
+            "Dihada","Aminatou","Sai","Rokiric","Ligth Paw"),
+  "MidRange"=c("Grist","Raffine","Golos","Kroxa","Tivit")
 )
 
 mat <- mtgtop8.archetype(mat, archetype, type=NULL)
