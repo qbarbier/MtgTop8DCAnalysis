@@ -46,26 +46,33 @@ mtgtop8.scraping <- function(db.deck=NULL,db.card=NULL,imax=41200,form="Duel Com
       if(!rlang::is_empty(format) && format == form){
         html.decks <- rvest::html_text(rvest::html_nodes(html, ".S14"))
         decks.id <- grep("(^{1}[0-8]$)|(^{1}[0-8]-{1}[0-8]$)",html.decks)
-        decks <- html.decks[decks.id+1]
-        decks <- gsub("\r\n","",decks)
-        decks <- gsub(" *$","",decks)
-        names(decks) <- html.decks[decks.id]
-        print(decks)
+        decks <- list()
+        names.decks <- list()
         
-        html_deck_link <- rvest::html_attr(rvest::html_nodes(html, "a")[grep("d=",rvest::html_nodes(html,"a"))],"href")  
+        html_deck_link <- rvest::html_attr(rvest::html_nodes(html,"a")[grep("d=",rvest::html_nodes(html,"a"))],"href")
         html_deck_link <- unique(html_deck_link)
         html_deck_link <- html_deck_link[-grep("(switch|mtgo|dec)",html_deck_link)]
         decks.list.id <- list()
         for(l in c(1:length(html_deck_link))){
           dl <- html_deck_link[[l]]
-          print(decks[[l]])
           card_html <- rvest::read_html(paste0("https://www.mtgtop8.com/event",dl))
+          decks.name <- rvest::html_text(rvest::html_nodes(card_html,"a"))[grep("archetype",rvest::html_nodes(card_html,"a"))]
+          print(decks.name)
+          str.pos <- rvest::html_text(rvest::html_nodes(card_html,"div.event_title"))[grep("#",rvest::html_text(rvest::html_nodes(card_html,"div.event_title")))]
+          str.pos <- stringr::str_extract(str.pos,"#[^ ]+")
+          pos <- gsub("#","",str.pos)
+          names.decks[[length(names.decks)+1]] <- pos
+          decks[[length(decks)+1]] <- decks.name
           decks.id <- gsub("&f","",strsplit(dl,"=")[[1]][3])
           cardlist <- rvest::html_text(rvest::html_nodes(card_html,".L14"))
-          db.card[[length(db.card)+1]] <- list("cardlist"=cardlist,"decks.name"=decks[[l]],
-                                               "events"=i,"decks.id"=decks.id)
+          db.card[[length(db.card)+1]] <- list("cardlist"=cardlist,"decks.name"=decks.name,
+                                               "events"=i,"decks.id"=decks.id,
+                                               "position"=pos)
           decks.list.id[[length(decks.list.id)+1]] <- decks.id
         }
+        
+        names(decks) <- unlist(names.decks)
+        print(decks)
         
         if(!rlang::is_empty(decks)){
           html.date <- rvest::html_text(rvest::html_nodes(html,".S14"))
@@ -78,9 +85,12 @@ mtgtop8.scraping <- function(db.deck=NULL,db.card=NULL,imax=41200,form="Duel Com
           print(date)
           print(players)
           if(!rlang::is_empty(date)){
-            db.deck[[length(db.deck)+1]] <- list("date"=date,"format"=gsub(" *$","",format),
-                                                 "decks"=decks,"players"=as.numeric(players),
-                                                 "events"=i,"decks.id"=decks.list.id)
+            db.deck[[length(db.deck)+1]] <- list("date"=date,
+                                                 "format"=gsub(" *$","",format),
+                                                 "decks"=decks,
+                                                 "players"=as.numeric(players),
+                                                 "events"=i,
+                                                 "decks.id"=decks.list.id)
           }
         }
       }
