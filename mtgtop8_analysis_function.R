@@ -115,16 +115,11 @@ mtgtop8.estimate.winrate <- function(mat){
 #'
 #'
 #'
-mtgtop8.archetype <- function(mat, archetype, type=NULL){
+mtgtop8.archetype <- function(mat, type=NULL){
   group <- list()
   for(i in c(1:dim(mat)[1])){
     d.name <- mat[i,'decks']
-    id <- which(lapply(archetype, function(k){grep(k, d.name)})==1)
-    if(length(id)!=1){
-      g <- NA
-    } else {
-      g <- names(archetype)[id]
-    }
+    g <- gsub(" decks","",d.name)
     group[[length(group)+1]] <- g
   }
   group <- unlist(group)
@@ -148,10 +143,10 @@ mtgtop8.archetype <- function(mat, archetype, type=NULL){
 #'
 #'
 #'
-mtgtop8.sc <- function(mat, card){
+mtgtop8.sc <- function(card){
   
   archetype <- lapply(c(1:length(card)),function(i){
-    return(unique(mat[which(mat$decks==card[[i]]$decks.name),"group"]))
+    return(card[[i]]$decks.name)
   })
   
   card.archetype <- card[which(!is.na(unlist(archetype)))]
@@ -177,7 +172,7 @@ mtgtop8.sc <- function(mat, card){
       value <- 0
       for(l in which(names.card.archetype==a)){
         for(d in card.archetype[[l]]){
-          if(length(grep(c,d))>0){
+          if(length(which(c%in%d))>0){
             value <- value+1
           }
         }
@@ -186,5 +181,6 @@ mtgtop8.sc <- function(mat, card){
       df[x,y] <- value
     }
   }
+  
   return(df)
 }
