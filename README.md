@@ -1,38 +1,6 @@
-# MtgTop8DCAnalysis
-https://mtgdc.shinyapps.io/mtg_top8_dc_ui/
+# Analyse du format Duel Commander d'après les données de MTG-TOP8
+
+## Résumé
+Magic The Gathering (MTG) est un jeu de cartes stratégique où les joueurs s'affrontent avec des decks personnalisés. Le format Duel Commander (DC) implique des duels un contre un avec des decks de 100 cartes et une liste de cartes interdites. Le méta-jeu, ou "meta-game", représente les tendances des decks et des stratégies populaires au sein de la communauté, influençant les choix des joueurs pour adapter leurs decks et leurs tactiques en fonction de ce qui est courant ou dominant sur la scène compétitif. MTG-top8 est un site populaire pour les joueurs de Magic: The Gathering. Il suit les résultats des tournois, donnant des détails sur les decks et stratégies utilisés par les meilleurs joueurs. Cela aide les joueurs à comprendre les tendances du jeu compétitif et à améliorer leurs propres decks. C'est la principale source en ligne pour les données du format Duel Commander.En se basant sur des données extraites automatiquement depuis ce site par le biais du scraping, nous avons réalisé une analyse des meilleurs decks du format en tenant compte de l'importance des événements et des périodes. Pour visualiser et parcourir ces données, nous avons utilisé la technologie R Shiny pour proposer une interface intuitive affichant le classement des decks compétitifs. De plus, grâce aux informations sur chaque carte unique utilisée dans ces decks, nous pouvons poursuivre l'analyse en réalisant des regroupements d'archétypes et en identifiant les cartes les plus présentes dans le format et/ou dans les différents types de decks.
 
 
-## How to use
-
-
-## MTG TOP8 Shiny interface for data analysis
-
-### Materiel & Methode
-
-#### Scraping
-Le "scraping" (ou "web scraping") est une technique informatique utilisée pour extraire automatiquement des données à partir de sites web. Cela consiste à parcourir et à récupérer les informations d'une page web de manière automatisée, plutôt que de les saisir manuellement. Le processus de scraping peut être réalisé en utilisant des programmes ou des scripts qui analysent le code source HTML des pages web, identifient les données spécifiques à extraire (comme du texte, des images ou des liens) et les récupèrent de manière structurée.
-
-Le site web mtgtop8 ne contenant pas d'API j'ai du developper un script qui parcours les pages web 
-
-#### Analysis
-Pour pouvoir faire une analyse de la meta il faut regrouper les données pas famille de deck et calculer certaines valeurs associé a chaque familles.
-
-#### Interface
-L'interface sjiny
-
-### Résultats
-
-### Discussions
-
-
-
-### Discussion
-
-### Abstract
-
-### Introdution
-Magic: The Gathering (Magic) est un jeu de cartes à collectionner créé en 1993 par Richard Garfield. Dans Magic, les joueurs incarnent des magiciens se lançant des sorts et invoquant des créatures pour s'affronter. Chaque joueur construit son propre deck de cartes à partir de milliers de choix possibles. Avec une mécanique de jeu profonde et un vaste univers fantastique, Magic a conquis des millions de joueurs à travers le monde. Le Duel Commander (DC) est un format de jeu compétitif du jeu de cartes Magic, se jouant en un contre un. Les joueurs doivent construire un deck de 100 cartes, dont seulement une copie de chaque carte est autorisée, à l'exception des terrains de base. Le format est conçu pour être équilibré et offre une dynamique de jeu plus rapide que le format traditionnel. Il est très apprécié des joueurs qui aiment les duels stratégiques et les affrontements intenses entre decks bien construits. Le Duel Commander a su rassembler une communauté dévouée de joueurs passionnés à travers le monde mais surtout en France, pays qui développe le plus la scène compétitive de ce format. Le métagame fait référence à l'évolution et à l'adaptation des stratégies et des decks utilisés par les joueurs en réponse à l'environnement de jeu actuel. Les decks et les stratégies les plus populaires et performants peuvent devenir dominants dans un certain environnement. Les joueurs réagissent alors à cette dominance en construisant leurs decks pour contrer ces stratégies. Cela crée un "métagame", où les joueurs ajustent leurs choix de decks et de cartes pour mieux s'adapter à la méta actuelle et améliorer leurs chances de victoire. Le métagame est en constante évolution, car de nouveaux decks innovants, de nouvelles cartes, des changements de règles ou des rééditions peuvent influencer les stratégies prédominantes. Les joueurs doivent donc rester attentifs aux tendances et aux évolutions du métagame pour rester compétitifs et réussir dans les tournois et les compétitions.La connaissance du métagame est essentielle pour les joueurs compétitifs, car cela leur permet d'anticiper les decks adverses probables et de prévoir des réponses adaptées pour maximiser leurs chances de succès dans les affrontements.
-MTGtop8 est un site web bien connu dans la communauté magic. Il se spécialise dans le suivi des résultats de tournois et de compétitions du jeu de cartes Magic. Le site offre un aperçu détaillé des decks et des stratégies utilisés par les meilleurs joueurs lors de ces événements. Sur MTGtop8, les joueurs peuvent trouver une mine d'informations sur les decks gagnants, les listes de cartes utilisées, les statistiques de performance des decks, et les méta-analyses des formats compétitifs tels que Standard, Modern, Legacy, et bien d'autres. Le site permet aux joueurs de suivre l'évolution du métagame, d'identifier les decks et les stratégies les plus performants, et de s'inspirer des meilleures constructions pour améliorer leurs propres decks. En plus de fournir des données sur les tournois en cours et passés, MTGtop8 propose également des fonctionnalités permettant aux joueurs de rechercher des decks par format, par couleur, par type de deck, et bien d'autres critères. Cela en fait une ressource inestimable pour les joueurs compétitifs souhaitant perfectionner leurs compétences et rester à jour avec les tendances du métagame. Il est a l'heure actuelle la seule source de données sur le format DC existant en ligne et à jours.
-
-
-Qu'elle type d'analyse il est possible de faire et a quoi ça sert
